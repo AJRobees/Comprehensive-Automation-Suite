@@ -1,0 +1,15 @@
+Target Directory
+       ↓
+Represent the Path
+       ↓
+Check It Exists
+       ↓
+Scan Its Contents
+       ↓
+Identify Files
+       ↓
+Identify Extensions
+       ↓
+Categorize Files
+       ↓
+Move Files
