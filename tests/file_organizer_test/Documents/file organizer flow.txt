@@ -1,15 +1,44 @@
-Target Directory
-       ↓
-Represent the Path
-       ↓
-Check It Exists
-       ↓
-Scan Its Contents
-       ↓
-Identify Files
-       ↓
-Identify Extensions
-       ↓
-Categorize Files
-       ↓
-Move Files
+                         main.py
+                            │
+                            ↓
+                    File Organizer call
+                            │
+                            ↓
+                ┌───────────────────────┐
+                │   File Organizer      │
+                │                       │
+                │ validate_dir()        │
+                │       ↓               │
+                │ scan_directory()      │
+                │       ↓               │
+                │ categorization()      │
+                │       ↓               │
+                │ duplicate_handling()  │
+                │       ↓               │
+                │ preview_creator()     │
+                └──────────┬────────────┘
+                           │
+                           ↓
+              ┌────────────────────────┐
+              │ manage_file_organizer  │
+              └───────────┬────────────┘
+                          │
+                 ┌────────┴─────────┐
+                 ↓                  ↓
+          necessary_data      preview_records
+                 │                  │
+                 ↓                  ↓
+       terminal report       preview display
+                                    │
+                                    ↓
+                              confirmation
+                                    │
+                         ┌──────────┴─────────┐
+                         ↓                    ↓
+                       YES                    NO
+                         ↓                    ↓
+                  execute plan             stop
+                         ↓
+                    file moves
+                         ↓
+                      result
