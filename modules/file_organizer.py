@@ -10,8 +10,8 @@ terminal report. Application events are recorded using the shared logging
 system provided by the general_logger module.
 """
 
-from pathlib import Path
-from .general_logger import get_logger
+from config import tests_dir_path
+from configs import get_logger
 
 logger = get_logger("file_organizer")
 
@@ -98,8 +98,8 @@ def duplicate_handling(given_path):
 class File_Organizer():
     def __init__(self):
 
-        self.project_dir = Path(__file__).parents[1]      
-        self.files_dir = self.project_dir/"tests"/"file_organizer_test" 
+        self.tests_dir = tests_dir_path     
+        self.files_dir = self.tests_dir/"file_organizer_test" 
 
         self.targeted_folder = self.files_dir.name
         self.files_name = []
