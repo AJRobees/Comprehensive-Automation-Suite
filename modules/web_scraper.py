@@ -3,7 +3,7 @@ from datetime import datetime
 import requests
 import json
 
-from config import random_header,tests_dir_path
+from config import random_header,report_dir_path
 from configs import get_logger
 
 logger = get_logger("web_scraper")
@@ -72,8 +72,8 @@ class Web_Scraper():
 
 def save_as_json(url,search,result):
 
-    if not tests_dir_path.exists():
-        tests_dir_path.mkdir()
+    if not report_dir_path.exists():
+        report_dir_path.mkdir()
 
     if len(result)== 1:
         result = result[0]
@@ -86,7 +86,7 @@ def save_as_json(url,search,result):
     }
 
     file_name = f"{datetime.now().strftime('%d-%h-%Y')}_reports.json"
-    file_path = tests_dir_path/file_name
+    file_path = report_dir_path/file_name
 
     if file_path.exists():
         existing_data = []

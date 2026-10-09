@@ -1,0 +1,147 @@
+[
+     {
+          "Targeted Folder": "tests",
+          "No. of Files Detected": 2,
+          "No. of Duplicate Files Detected": 0,
+          "No. of Folders Detected": 1,
+          "Files": [
+               "04-Oct-2026_organizer_reports.json",
+               "04-Oct-2026_result.json"
+          ],
+          "Folders": [
+               "file_organizer_test"
+          ],
+          "Preview records": [
+               {
+                    "Name": "04-Oct-2026_organizer_reports.json",
+                    "Category": "JSON/Report",
+                    "Destination": "JSON\\Report\\04-Oct-2026_organizer_reports.json"
+               },
+               {
+                    "Name": "04-Oct-2026_result.json",
+                    "Category": "JSON/Report",
+                    "Destination": "JSON\\Report\\04-Oct-2026_result.json"
+               }
+          ],
+          "Message": "File organization is stopped by user.",
+          "Time": "19-39-03"
+     },
+     {
+          "Targeted Folder": "tests",
+          "No. of Files Detected": 3,
+          "No. of Duplicate Files Detected": 0,
+          "No. of Folders Detected": 1,
+          "Files": [
+               "04-Oct-2026_organizer_reports.json",
+               "04-Oct-2026_result.json",
+               "08-Oct-2026_organizer_reports.json"
+          ],
+          "Folders": [
+               "file_organizer_test"
+          ],
+          "Preview records": [
+               {
+                    "Name": "04-Oct-2026_organizer_reports.json",
+                    "Category": "JSON/Report",
+                    "Destination": "JSON\\Report\\04-Oct-2026_organizer_reports.json"
+               },
+               {
+                    "Name": "04-Oct-2026_result.json",
+                    "Category": "JSON/Report",
+                    "Destination": "JSON\\Report\\04-Oct-2026_result.json"
+               },
+               {
+                    "Name": "08-Oct-2026_organizer_reports.json",
+                    "Category": "JSON/Report",
+                    "Destination": "JSON\\Report\\08-Oct-2026_organizer_reports.json"
+               }
+          ],
+          "Message": "File organization is stopped by user.",
+          "Time": "19-50-29"
+     },
+     {
+          "Targeted Folder": "tests",
+          "No. of Files Detected": 3,
+          "No. of Duplicate Files Detected": 0,
+          "No. of Folders Detected": 1,
+          "Files": [
+               "04-Oct-2026_organizer_reports.json",
+               "04-Oct-2026_result.json",
+               "08-Oct-2026_organizer_reports.json"
+          ],
+          "Folders": [
+               "file_organizer_test"
+          ],
+          "Preview records": [
+               {
+                    "Name": "04-Oct-2026_organizer_reports.json",
+                    "Category": "JSON(Report)",
+                    "Destination": "JSON(Report)\\04-Oct-2026_organizer_reports.json"
+               },
+               {
+                    "Name": "04-Oct-2026_result.json",
+                    "Category": "JSON(Report)",
+                    "Destination": "JSON(Report)\\04-Oct-2026_result.json"
+               },
+               {
+                    "Name": "08-Oct-2026_organizer_reports.json",
+                    "Category": "JSON(Report)",
+                    "Destination": "JSON(Report)\\08-Oct-2026_organizer_reports.json"
+               }
+          ],
+          "Message": "File organization completed successfully.",
+          "Time": "20-04-39"
+     },
+     {
+          "Targeted Folder": "tests",
+          "No. of Files Detected": 1,
+          "No. of Duplicate Files Detected": 1,
+          "No. of Folders Detected": 2,
+          "Files": [
+               "08-Oct-2026_organizer_reports.json"
+          ],
+          "Duplicate Files": [
+               "08-Oct-2026_organizer_reports (1).json"
+          ],
+          "Folders": [
+               "file_organizer_test",
+               "JSON(Report)"
+          ],
+          "Preview records": [
+               {
+                    "Name": "08-Oct-2026_organizer_reports.json",
+                    "Category": "JSON(Report)",
+                    "Destination": "JSON(Report)\\08-Oct-2026_organizer_reports (1).json"
+               }
+          ],
+          "Message": "File organization is stopped by user.",
+          "Time": "20-07-23"
+     },
+     {
+          "Targeted Folder": "Downloads",
+          "No. of Files Detected": 1,
+          "No. of Duplicate Files Detected": 0,
+          "No. of Folders Detected": 7,
+          "Files": [
+               "lines-list-svgrepo-com.svg"
+          ],
+          "Folders": [
+               "Archives",
+               "Image",
+               "Other",
+               "PDF",
+               "Quick Share",
+               "Review \u2014 Google Careers_files",
+               "Video"
+          ],
+          "Preview records": [
+               {
+                    "Name": "lines-list-svgrepo-com.svg",
+                    "Category": "Other",
+                    "Destination": "Other\\lines-list-svgrepo-com.svg"
+               }
+          ],
+          "Message": "File organization completed successfully.",
+          "Time": "22-00-48"
+     }
+]

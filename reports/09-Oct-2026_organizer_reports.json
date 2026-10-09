@@ -1,0 +1,31 @@
+{
+     "Targeted Folder": "file_organizer_test",
+     "No. of Files Detected": 2,
+     "No. of Duplicate Files Detected": 0,
+     "No. of Folders Detected": 5,
+     "Files": [
+          "image.png",
+          "User_manual.pdf"
+     ],
+     "Folders": [
+          "Audio",
+          "Documents",
+          "Other",
+          "PDF",
+          "Spreadsheets"
+     ],
+     "Preview records": [
+          {
+               "Name": "image.png",
+               "Category": "Image",
+               "Destination": "Image\\image.png"
+          },
+          {
+               "Name": "User_manual.pdf",
+               "Category": "PDF",
+               "Destination": "PDF\\User_manual.pdf"
+          }
+     ],
+     "Message": "File organization completed successfully.",
+     "Time": "03-57-42"
+}

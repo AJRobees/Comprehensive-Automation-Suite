@@ -1,0 +1,430 @@
+[
+     {
+          "Targeted Folder": "Downloads",
+          "No. of Files Detected": 33,
+          "No. of Duplicate Files Detected": 0,
+          "No. of Folders Detected": 2,
+          "Files": [
+               "007 First Light [FitGirl Repack].torrent",
+               "20250502133136.png",
+               "Aadhaar.jpg",
+               "about.html",
+               "Antony John Robees. A 950921104002-20260801T163005Z-1-001.zip",
+               "Antony John Robees_ID_Card.pdf",
+               "Antony John Robees_Offer_Letter.pdf",
+               "application.pdf",
+               "Application_form_HCLTFP2012135.pdf",
+               "Architecture Diagram.png",
+               "ChromeSetup.exe",
+               "Driving License.jpeg",
+               "feeReciept.pdf",
+               "Git-2.55.0.2-64-bit.exe",
+               "home.html",
+               "image (1).png",
+               "image (2).png",
+               "image.png",
+               "IMG_20250504_172829.jpg",
+               "main.js",
+               "Navia-6a9041325cf73e361bb84403.png",
+               "NCS_Registration_Card.pdf",
+               "OTR-10031316071.pdf",
+               "Review \u2014 Google Careers.html",
+               "Screenshot_2022-09-23-18-58-17-987_cn.wps.xiaomi.abroad.lite.jpg",
+               "Signature.jpeg",
+               "style.css",
+               "The Developers Arena - Launch Your Tech Career.pdf",
+               "the-knave-genshin-impact-live-wallpaper.mp4",
+               "thorns-live-wallpaper.mp4",
+               "TypeError at _.html",
+               "utorrent_installer.exe",
+               "VSCodeUserSetup-x64-1.124.0.exe"
+          ],
+          "Folders": [
+               "Quick Share",
+               "Review \u2014 Google Careers_files"
+          ],
+          "Preview records": [
+               {
+                    "Name": "007 First Light [FitGirl Repack].torrent",
+                    "Category": "Other",
+                    "Destination": "Other\\007 First Light [FitGirl Repack].torrent"
+               },
+               {
+                    "Name": "20250502133136.png",
+                    "Category": "Image",
+                    "Destination": "Image\\20250502133136.png"
+               },
+               {
+                    "Name": "Aadhaar.jpg",
+                    "Category": "Image",
+                    "Destination": "Image\\Aadhaar.jpg"
+               },
+               {
+                    "Name": "about.html",
+                    "Category": "Other",
+                    "Destination": "Other\\about.html"
+               },
+               {
+                    "Name": "Antony John Robees. A 950921104002-20260801T163005Z-1-001.zip",
+                    "Category": "Archives",
+                    "Destination": "Archives\\Antony John Robees. A 950921104002-20260801T163005Z-1-001.zip"
+               },
+               {
+                    "Name": "Antony John Robees_ID_Card.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\Antony John Robees_ID_Card.pdf"
+               },
+               {
+                    "Name": "Antony John Robees_Offer_Letter.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\Antony John Robees_Offer_Letter.pdf"
+               },
+               {
+                    "Name": "application.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\application.pdf"
+               },
+               {
+                    "Name": "Application_form_HCLTFP2012135.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\Application_form_HCLTFP2012135.pdf"
+               },
+               {
+                    "Name": "Architecture Diagram.png",
+                    "Category": "Image",
+                    "Destination": "Image\\Architecture Diagram.png"
+               },
+               {
+                    "Name": "ChromeSetup.exe",
+                    "Category": "Other",
+                    "Destination": "Other\\ChromeSetup.exe"
+               },
+               {
+                    "Name": "Driving License.jpeg",
+                    "Category": "Image",
+                    "Destination": "Image\\Driving License.jpeg"
+               },
+               {
+                    "Name": "feeReciept.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\feeReciept.pdf"
+               },
+               {
+                    "Name": "Git-2.55.0.2-64-bit.exe",
+                    "Category": "Other",
+                    "Destination": "Other\\Git-2.55.0.2-64-bit.exe"
+               },
+               {
+                    "Name": "home.html",
+                    "Category": "Other",
+                    "Destination": "Other\\home.html"
+               },
+               {
+                    "Name": "image (1).png",
+                    "Category": "Image",
+                    "Destination": "Image\\image (1).png"
+               },
+               {
+                    "Name": "image (2).png",
+                    "Category": "Image",
+                    "Destination": "Image\\image (2).png"
+               },
+               {
+                    "Name": "image.png",
+                    "Category": "Image",
+                    "Destination": "Image\\image.png"
+               },
+               {
+                    "Name": "IMG_20250504_172829.jpg",
+                    "Category": "Image",
+                    "Destination": "Image\\IMG_20250504_172829.jpg"
+               },
+               {
+                    "Name": "main.js",
+                    "Category": "Other",
+                    "Destination": "Other\\main.js"
+               },
+               {
+                    "Name": "Navia-6a9041325cf73e361bb84403.png",
+                    "Category": "Image",
+                    "Destination": "Image\\Navia-6a9041325cf73e361bb84403.png"
+               },
+               {
+                    "Name": "NCS_Registration_Card.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\NCS_Registration_Card.pdf"
+               },
+               {
+                    "Name": "OTR-10031316071.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\OTR-10031316071.pdf"
+               },
+               {
+                    "Name": "Review \u2014 Google Careers.html",
+                    "Category": "Other",
+                    "Destination": "Other\\Review \u2014 Google Careers.html"
+               },
+               {
+                    "Name": "Screenshot_2022-09-23-18-58-17-987_cn.wps.xiaomi.abroad.lite.jpg",
+                    "Category": "Image",
+                    "Destination": "Image\\Screenshot_2022-09-23-18-58-17-987_cn.wps.xiaomi.abroad.lite.jpg"
+               },
+               {
+                    "Name": "Signature.jpeg",
+                    "Category": "Image",
+                    "Destination": "Image\\Signature.jpeg"
+               },
+               {
+                    "Name": "style.css",
+                    "Category": "Other",
+                    "Destination": "Other\\style.css"
+               },
+               {
+                    "Name": "The Developers Arena - Launch Your Tech Career.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\The Developers Arena - Launch Your Tech Career.pdf"
+               },
+               {
+                    "Name": "the-knave-genshin-impact-live-wallpaper.mp4",
+                    "Category": "Video",
+                    "Destination": "Video\\the-knave-genshin-impact-live-wallpaper.mp4"
+               },
+               {
+                    "Name": "thorns-live-wallpaper.mp4",
+                    "Category": "Video",
+                    "Destination": "Video\\thorns-live-wallpaper.mp4"
+               },
+               {
+                    "Name": "TypeError at _.html",
+                    "Category": "Other",
+                    "Destination": "Other\\TypeError at _.html"
+               },
+               {
+                    "Name": "utorrent_installer.exe",
+                    "Category": "Other",
+                    "Destination": "Other\\utorrent_installer.exe"
+               },
+               {
+                    "Name": "VSCodeUserSetup-x64-1.124.0.exe",
+                    "Category": "Other",
+                    "Destination": "Other\\VSCodeUserSetup-x64-1.124.0.exe"
+               }
+          ],
+          "Message": "File organization is stopped by user.",
+          "Time": "19-43-20"
+     },
+     {
+          "Targeted Folder": "Downloads",
+          "No. of Files Detected": 33,
+          "No. of Duplicate Files Detected": 0,
+          "No. of Folders Detected": 2,
+          "Files": [
+               "007 First Light [FitGirl Repack].torrent",
+               "20250502133136.png",
+               "Aadhaar.jpg",
+               "about.html",
+               "Antony John Robees. A 950921104002-20260801T163005Z-1-001.zip",
+               "Antony John Robees_ID_Card.pdf",
+               "Antony John Robees_Offer_Letter.pdf",
+               "application.pdf",
+               "Application_form_HCLTFP2012135.pdf",
+               "Architecture Diagram.png",
+               "ChromeSetup.exe",
+               "Driving License.jpeg",
+               "feeReciept.pdf",
+               "Git-2.55.0.2-64-bit.exe",
+               "home.html",
+               "image (1).png",
+               "image (2).png",
+               "image.png",
+               "IMG_20250504_172829.jpg",
+               "main.js",
+               "Navia-6a9041325cf73e361bb84403.png",
+               "NCS_Registration_Card.pdf",
+               "OTR-10031316071.pdf",
+               "Review \u2014 Google Careers.html",
+               "Screenshot_2022-09-23-18-58-17-987_cn.wps.xiaomi.abroad.lite.jpg",
+               "Signature.jpeg",
+               "style.css",
+               "The Developers Arena - Launch Your Tech Career.pdf",
+               "the-knave-genshin-impact-live-wallpaper.mp4",
+               "thorns-live-wallpaper.mp4",
+               "TypeError at _.html",
+               "utorrent_installer.exe",
+               "VSCodeUserSetup-x64-1.124.0.exe"
+          ],
+          "Folders": [
+               "Quick Share",
+               "Review \u2014 Google Careers_files"
+          ],
+          "Preview records": [
+               {
+                    "Name": "007 First Light [FitGirl Repack].torrent",
+                    "Category": "Other",
+                    "Destination": "Other\\007 First Light [FitGirl Repack].torrent"
+               },
+               {
+                    "Name": "20250502133136.png",
+                    "Category": "Image",
+                    "Destination": "Image\\20250502133136.png"
+               },
+               {
+                    "Name": "Aadhaar.jpg",
+                    "Category": "Image",
+                    "Destination": "Image\\Aadhaar.jpg"
+               },
+               {
+                    "Name": "about.html",
+                    "Category": "Other",
+                    "Destination": "Other\\about.html"
+               },
+               {
+                    "Name": "Antony John Robees. A 950921104002-20260801T163005Z-1-001.zip",
+                    "Category": "Archives",
+                    "Destination": "Archives\\Antony John Robees. A 950921104002-20260801T163005Z-1-001.zip"
+               },
+               {
+                    "Name": "Antony John Robees_ID_Card.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\Antony John Robees_ID_Card.pdf"
+               },
+               {
+                    "Name": "Antony John Robees_Offer_Letter.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\Antony John Robees_Offer_Letter.pdf"
+               },
+               {
+                    "Name": "application.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\application.pdf"
+               },
+               {
+                    "Name": "Application_form_HCLTFP2012135.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\Application_form_HCLTFP2012135.pdf"
+               },
+               {
+                    "Name": "Architecture Diagram.png",
+                    "Category": "Image",
+                    "Destination": "Image\\Architecture Diagram.png"
+               },
+               {
+                    "Name": "ChromeSetup.exe",
+                    "Category": "Other",
+                    "Destination": "Other\\ChromeSetup.exe"
+               },
+               {
+                    "Name": "Driving License.jpeg",
+                    "Category": "Image",
+                    "Destination": "Image\\Driving License.jpeg"
+               },
+               {
+                    "Name": "feeReciept.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\feeReciept.pdf"
+               },
+               {
+                    "Name": "Git-2.55.0.2-64-bit.exe",
+                    "Category": "Other",
+                    "Destination": "Other\\Git-2.55.0.2-64-bit.exe"
+               },
+               {
+                    "Name": "home.html",
+                    "Category": "Other",
+                    "Destination": "Other\\home.html"
+               },
+               {
+                    "Name": "image (1).png",
+                    "Category": "Image",
+                    "Destination": "Image\\image (1).png"
+               },
+               {
+                    "Name": "image (2).png",
+                    "Category": "Image",
+                    "Destination": "Image\\image (2).png"
+               },
+               {
+                    "Name": "image.png",
+                    "Category": "Image",
+                    "Destination": "Image\\image.png"
+               },
+               {
+                    "Name": "IMG_20250504_172829.jpg",
+                    "Category": "Image",
+                    "Destination": "Image\\IMG_20250504_172829.jpg"
+               },
+               {
+                    "Name": "main.js",
+                    "Category": "Other",
+                    "Destination": "Other\\main.js"
+               },
+               {
+                    "Name": "Navia-6a9041325cf73e361bb84403.png",
+                    "Category": "Image",
+                    "Destination": "Image\\Navia-6a9041325cf73e361bb84403.png"
+               },
+               {
+                    "Name": "NCS_Registration_Card.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\NCS_Registration_Card.pdf"
+               },
+               {
+                    "Name": "OTR-10031316071.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\OTR-10031316071.pdf"
+               },
+               {
+                    "Name": "Review \u2014 Google Careers.html",
+                    "Category": "Other",
+                    "Destination": "Other\\Review \u2014 Google Careers.html"
+               },
+               {
+                    "Name": "Screenshot_2022-09-23-18-58-17-987_cn.wps.xiaomi.abroad.lite.jpg",
+                    "Category": "Image",
+                    "Destination": "Image\\Screenshot_2022-09-23-18-58-17-987_cn.wps.xiaomi.abroad.lite.jpg"
+               },
+               {
+                    "Name": "Signature.jpeg",
+                    "Category": "Image",
+                    "Destination": "Image\\Signature.jpeg"
+               },
+               {
+                    "Name": "style.css",
+                    "Category": "Other",
+                    "Destination": "Other\\style.css"
+               },
+               {
+                    "Name": "The Developers Arena - Launch Your Tech Career.pdf",
+                    "Category": "PDF",
+                    "Destination": "PDF\\The Developers Arena - Launch Your Tech Career.pdf"
+               },
+               {
+                    "Name": "the-knave-genshin-impact-live-wallpaper.mp4",
+                    "Category": "Video",
+                    "Destination": "Video\\the-knave-genshin-impact-live-wallpaper.mp4"
+               },
+               {
+                    "Name": "thorns-live-wallpaper.mp4",
+                    "Category": "Video",
+                    "Destination": "Video\\thorns-live-wallpaper.mp4"
+               },
+               {
+                    "Name": "TypeError at _.html",
+                    "Category": "Other",
+                    "Destination": "Other\\TypeError at _.html"
+               },
+               {
+                    "Name": "utorrent_installer.exe",
+                    "Category": "Other",
+                    "Destination": "Other\\utorrent_installer.exe"
+               },
+               {
+                    "Name": "VSCodeUserSetup-x64-1.124.0.exe",
+                    "Category": "Other",
+                    "Destination": "Other\\VSCodeUserSetup-x64-1.124.0.exe"
+               }
+          ],
+          "Message": "File organization completed successfully.",
+          "Time": "19-50-54"
+     }
+]

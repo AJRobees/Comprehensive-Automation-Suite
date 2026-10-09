@@ -12,6 +12,8 @@ system provided by the general_logger module.
 
 from config import tests_dir_path
 from configs import get_logger
+from utils import organizer_json_generator
+from pathlib import Path
 
 logger = get_logger("file_organizer")
 
@@ -97,11 +99,7 @@ def duplicate_handling(given_path):
 
 class File_Organizer():
     def __init__(self):
-
-        self.tests_dir = tests_dir_path     
-        self.files_dir = self.tests_dir/"file_organizer_test" 
-
-        self.targeted_folder = self.files_dir.name
+   
         self.files_name = []
         self.duplicate_files_name = []
         self.folders_name = []
@@ -132,7 +130,7 @@ class File_Organizer():
         preview = {
             "Name": file_name,
             "Category": file_category,
-            "Destination": file_destination,
+            "Destination": str(file_destination),
         }
         self.preview_records.append(preview)
         
@@ -166,7 +164,7 @@ class File_Organizer():
                 self.preview_creator(file.name,file_category,file_path.relative_to(self.files_dir))
         logger.info("Preview construction is completed.")
         
-    def manage_file_organizer(self):
+    def manage_file_organizer(self,folder_path):
         """
         Start the file organizer workflow after validating the target directory.
 
@@ -178,15 +176,25 @@ class File_Organizer():
             records when the target directory is valid.
         """
         logger.info("File organizer was started.")
+
+        if folder_path == "":
+            self.tests_dir = tests_dir_path
+            self.files_dir = self.tests_dir/"file_organizer_test" 
+            self.targeted_folder = self.files_dir.name
+        else:
+            self.tests_dir = Path(folder_path) 
+            self.files_dir = self.tests_dir
+            self.targeted_folder = self.files_dir.name
         
+
         if validate_dir(self.files_dir):
             self.scan_directory()
             self.categorization()
-            necessary_data = {"targeted_folder":self.targeted_folder,
+            self.necessary_data = {"targeted_folder":self.targeted_folder,
                             "dir_files":self.files_name,
                             "dir_folders":self.folders_name,
                             "duplicate_file_list":self.duplicate_files_name,}
-            return necessary_data,self.preview_records
+            return self.necessary_data,self.preview_records
         
         else:
             logger.error("Invalid target path!")
@@ -202,60 +210,72 @@ class File_Organizer():
             str or None: The user's decision when the retry limit is reached.
         """
         if self.tried ==3:
-            decide = (input("\nWant to continue? (yes/no): ")).lower()
+            decide = (input("\nWant to continue? (yes/no): ")).lower().strip()
             self.tried = 0
             if decide == "no":
                 logger.warning("File organization is terminated by user.")
                 return decide
         self.tried+=1
 
-    def move_confirmation(self,preview_records):
+    def retry_responce(self):
+        print("\nPlease select between 1/yes or 2/no. \nOR \nWait for 3 tries, Try ",self.tried)
+
+        attempt = self.retry_attempt()
+        # Retry the confirmation until the user provides a valid choice or exits.
+        if attempt == "no":
+            self.tried = 1
+            reply = "3 attempts are over, try again with valid choice."
+            return reply
+
+    def reset_data(self):
+        self.files_name = []
+        self.duplicate_files_name = []
+        self.folders_name = []
+        self.preview_records = []
+        self.tried = 1
+
+    def move_confirmation(self,preview_records,decision):
         """
         Confirm and perform the planned file organization.
 
-        Requests user confirmation, creates missing category folders, and moves
+        Creates missing category folders, and moves
         files to their planned destinations. Invalid choices are handled through
         the retry mechanism.
 
         Returns:
             str: A message describing the result of the organization operation.
         """
-        decide = (input("\nWant to organize these files? \n 1. Yes \n 2. No : ")).lower()
+        try:
+            if decision == "1" or decision == "yes":
+                for row in preview_records:
+                    # Resolve the category folder and final destination from the preview record.
+                    file = self.files_dir/row["Name"]
+                    category_folder = (self.files_dir/row["Destination"]).parent
+                    destination = self.files_dir/row["Destination"]
 
-        if decide == "1" or decide == "yes":
-            for row in preview_records:
-                # Resolve the category folder and final destination from the preview record.
-                file = self.files_dir/row["Name"]
-                category_folder = self.files_dir/row["Destination"].parent
-                destination = self.files_dir/row["Destination"]
+                    if category_folder.exists():
+                        file.rename(destination)
+                    else:
+                        category_folder.mkdir()
+                        file.rename(destination)
 
-                if category_folder.exists():
-                    file.rename(destination)
-                else:
-                    category_folder.mkdir()
-                    file.rename(destination)
-
-            reply = "File organization completed successfully."
-            logger.info("File organization completed successfully.")
-            return reply
-
-        elif decide == "2" or decide == "no":
-            reply = "File organization is stopped."
-            logger.info("File organization is stopped by user.")
-            return reply
-
-        else:
-            print("\nPlease select between 1/yes or 2/no. \nOR \nWait for 3 tries, Try ",self.tried)
-
-            attempt = self.retry_attempt()
-            # Retry the confirmation until the user provides a valid choice or exits.
-            if attempt == "no":
-                self.tried = 1
-                reply = "3 attempts are over, try again with valid choice."
+                reply = "File organization completed successfully."
+                logger.info("File organization completed successfully.")
+                organizer_json_generator(self.necessary_data,self.preview_records,reply)
+                self.reset_data()
                 return reply
+
             else:
-                reply = self.move_confirmation(preview_records)
+                reply = "File organization is stopped by user."
+                logger.info("File organization is stopped by user.")
+                organizer_json_generator(self.necessary_data,self.preview_records,reply)
+                logger.info("Organized records saved as json.")
+                self.reset_data()
                 return reply
+
+        except FileNotFoundError:
+            logger.error("Invalid file name or path!")
+
 
 
 # CLI-only display functions called by the main program.

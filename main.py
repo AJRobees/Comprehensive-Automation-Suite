@@ -1,11 +1,12 @@
 import time
-import tkinter as tk
 from modules import *
+from gui.home_interface import Home_Interface
 
 if __name__ == "__main__":
 
     organizer = File_Organizer()
     scraper = Web_Scraper()
+
 
     print("\nGreetings, \n")
 
@@ -18,68 +19,36 @@ if __name__ == "__main__":
         "\n      0. Exit")
 
     def get_choice():
-            choice = (input("\nEnter your choice : ")).lower()
+            choice = (input("\nEnter your choice : ")).lower().strip()
             return choice   
+    
+    def confirm_decision(records):
+        decisions = ("1","yes","2","no")
+        decide = (input("\nWant to organize these files? \n 1. Yes \n 2. No : ")).lower()
 
-    def retry_attempt(tried):
-        """
-        Manage repeated invalid confirmation attempts.
+        if decide in decisions:
+            responce = organizer.move_confirmation(records,decide)
+            print("\n",responce,"\n")
+        else:
+            responce = organizer.retry_responce()
+            if responce:
+                print("\n",responce,"\n")
 
-        Allows the user to retry the confirmation process and asks whether to
-        continue after the maximum number of attempts is reached.
-
-        Returns:
-            str or None: The user's decision when the retry limit is reached.
-        """
-        if tried >=3:
-            decide = (input("\nWant to continue? (yes/no): ")).lower()
-            tried = 0
-            if decide == "no":
-                return decide
             else:
-                 retry_attempt(tried)
-        tried+=1
-        return tried
-
-    def creation_window(title_name):         # Function that common for the GUI module like calculator, timer and stopwatch
-            
-            window = tk.Tk()
-        
-            window.title(title_name) #set the title of the window
-            window.resizable(0,0) #Not allow the window to resize
+                confirm_decision(records)
     
-            mod = title_name(window)
-    
-            window.update() #update the window to display the buttons
-            window_width = window.winfo_reqwidth()
-            window_height = window.winfo_reqheight()
-            screen_width = window.winfo_screenwidth()
-            screen_height = window.winfo_screenheight()
-            x = int(screen_width - window_width) // 2
-            y = int(screen_height - window_height) // 2
-    
-            #formula = "(w) x (h) + (x) + (y)"
-            window.geometry(f"{window_width}x{window_height}+{x}+{y}") #center the window on the screen
-    
-            window.wm_geometry(f"{550}x{650}+{x}+{y}")
-    
-            mod.pack()
-            # When closing the window(x) asks the confirmation and the confirmation function stays on it's module.
-            #window.protocol("WM_DELETE_WINDOW",mod.on_close)       
-            window.mainloop()
-
     def get_file_organizer():
         try:
             print('Initialzing File organizer...\n')
             time.sleep(1)
-            necessary_data,preview_records = organizer.manage_file_organizer()
+            file_path = (input("Give the folder path to organize : \n")).strip()
+            necessary_data,preview_records = organizer.manage_file_organizer(file_path)
 
             organizer_terminal_report(necessary_data)
 
             if len(necessary_data["dir_files"]) != 0:
                 show_organizer_preview(preview_records)
-                decision = organizer.move_confirmation(preview_records)
-                print("\n",decision,"\n")
+                confirm_decision(preview_records)
 
             print("                 ","*"*40,"\n")
 
@@ -88,9 +57,8 @@ if __name__ == "__main__":
 
     def get_web_scraper():
 
-        url = "https://www.lifestylestores.com/in/en/SHOP-Casio-CASIO-Enticer-Stainless-Steel-Chronograph-Watch--A2318-For-Men/p/1000014190004"
-        #url = "https://www.myntra.com/headphones/boat/boat-rockerz-371-wireless-over-ear-headphones/38208480/buy"
-        validity,responce = scraper.run_scraper(url)
+        url = input("\nGive url for web scraping : ")
+        validity,responce = scraper.run_scraper(url.strip())
         if validity:
             element = input("\nWhat you want to search? : ")
             result_element = scraper.search_element(element)
@@ -109,7 +77,13 @@ if __name__ == "__main__":
         else:
              print("\n",responce)
 
-    def launch_interface(option):
+    def show_interface():
+        show_interface_menu()
+        chosen = get_choice()
+        result = select_interface(chosen)
+        return result
+
+    def select_interface(option):
 
         option_1 = ["1","cli"]
         option_2 = ["2","gui"]
@@ -139,10 +113,11 @@ if __name__ == "__main__":
         elif option in option_2:
             print("\n Loading the Interface... \n")
             time.sleep(3)
-            print('Under development !\n')
-            #title_name = File_Organizer_GUI
-            #creation_window(title_name)
+
+            Home_Interface()
+            
             time.sleep(1)
+
             return "continue"
 
         elif option in option_0:
@@ -151,11 +126,16 @@ if __name__ == "__main__":
              return "exit"
 
         else:
-            print("Invalid choice, try again!")
-            return "retry"
+            reply = organizer.retry_responce()
+            if reply:
+                print("\n",reply,"\n")
+                return "exit"
+            else:
+                result = show_interface()
+                return result
 
     def show_interface_menu():
-            print("Interface: \n"
+            print("\nInterface: \n"
             "\n      1. CLI",
             "\n      2. GUI",
             "\n      0. Exit")
@@ -167,25 +147,12 @@ if __name__ == "__main__":
 
     def run_main():
         show_title()
-        show_interface_menu()
-        chosen = get_choice()
-        result = launch_interface(chosen)
+        result = show_interface()
         return result
 
     while True:
         result = run_main()
         if result == "exit":
             break
-        elif result == "retry":
-            print("\nPlease select between 1/yes or 2/no. \nOR \nWait for 3 tries, Try ",tried)
-            
-            attempt = retry_attempt(tried)
-            # Retry the confirmation until the user provides a valid choice or exits.
-            if attempt == "no":
-                tried = 1
-                reply = "3 attempts are over, try again with valid choice."
-            tried +=1
-
-            if attempt != "no":
-                run_main()
+        
 
