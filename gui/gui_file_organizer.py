@@ -1,3 +1,14 @@
+"""
+Graphical user interface for the File Organizer module.
+
+This module provides a Tkinter interface for selecting a target folder,
+displaying detected files and folders, reviewing the organization preview,
+and confirming or cancelling the file organization operation.
+
+The actual scanning, categorization, and file-moving logic is handled
+by the File_Organizer class.
+"""
+
 from modules import File_Organizer
 
 from config import tests_dir_path
@@ -5,7 +16,23 @@ from tkinter import messagebox,ttk
 import tkinter as tk
 
 class File_Organizer_GUI(tk.Frame):
+    """
+    Provide the graphical interface for the File Organizer.
+
+    The interface allows users to specify a folder, start scanning,
+    review the scan report and planned file destinations, and confirm
+    or cancel the organization operation.
+    """
     def __init__(self,master):
+        """
+        Initialize the File Organizer interface and its main controls.
+
+        Args:
+            master: The parent Tkinter window or container.
+
+        Configures the window dimensions, initializes the folder location
+        variable, and creates the folder input field and scan button.
+        """
         super().__init__(master)
         self.master = master
         self.master.title("File Organizer")
@@ -37,6 +64,13 @@ class File_Organizer_GUI(tk.Frame):
 
 
     def start_organizer(self):
+        """
+        Start the file scanning and preview preparation process.
+
+        Creates a File_Organizer instance and passes the stripped folder
+        path to its preparation workflow. Displays an error dialog if the
+        target path is invalid; otherwise, opens the report window.
+        """
         self.organizer = File_Organizer()
         self.given_path = self.location_var.get()
         result = self.organizer.manage_file_organizer(self.given_path.strip())
@@ -48,6 +82,21 @@ class File_Organizer_GUI(tk.Frame):
         self.show_report(result)
         
     def show_report(self,data):
+        """
+        Display the scan report and organization preview in a separate window.
+
+        Args:
+            data: A tuple containing the organizer's summary dictionary
+                and the list of preview records.
+
+        Displays detected files, duplicate filenames, existing folders,
+        and planned category folders. When files are available for
+        organization, displays their planned destinations in a table
+        and provides a confirmation action.
+
+        The confirmation action calls the File_Organizer instance to
+        perform or cancel the operation and displays the resulting message.
+        """
         self.necessary_data,self.preview_records = data
 
         category_folders = ["Image", "Audio", "Video", "Documents", "PDF",
@@ -74,7 +123,16 @@ class File_Organizer_GUI(tk.Frame):
         report_text.tag_configure("heading",font=("Times New Roman",12,"bold"))
 
         def add_section(header,items):
-            
+            """
+            Insert a labelled list of items into the report text widget.
+
+            Args:
+                header: The heading to display above the items.
+                items: The collection of item names to display.
+
+            Displays the heading and each item when the collection is non-empty,
+            then inserts a blank line to separate report sections.
+            """
             if items:
                 report_text.insert("end",f"     {header}:\n","heading")
                 for item in items:
@@ -136,6 +194,14 @@ class File_Organizer_GUI(tk.Frame):
 
 
             def confirm_organize():
+                """
+                Ask the user to confirm or cancel the organization operation.
+
+                Converts the confirmation dialog's Boolean response into the
+                "yes" or "no" value expected by File_Organizer, invokes the
+                organization workflow, displays its result, and closes the report
+                window.
+                """
                 decision = messagebox.askyesno("Confirm","Confirm your decision.")
                 if decision:
                     valid = "yes"
@@ -153,7 +219,12 @@ class File_Organizer_GUI(tk.Frame):
 
 
     def on_close(self):
-        # Asks for confirmation to close, if after func is running then it cancels before closing.
+        """
+        Ask the user to confirm before closing the application window.
+
+        Destroys the parent window only when the user confirms the
+        close action.
+        """
         decision = messagebox.askokcancel("Quit","Are you sure?")
         if decision is True:
             self.master.destroy()

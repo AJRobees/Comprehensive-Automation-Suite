@@ -1,7 +1,26 @@
+"""
+Shared logging configuration for the Comprehensive Automation Suite.
+
+This module creates and configures named loggers that write application
+events to module-specific log files in the project's logs directory.
+"""
 from pathlib import Path
 import logging
 
 def get_logger(source):
+    """
+    Create and configure a logger that writes to a module-specific file.
+
+    Args:
+        source: The logger name, also used as the log filename.
+
+    Creates the project's logs directory if it does not exist, configures
+    the logger at INFO level, and attaches a file handler with a formatter
+    that records the timestamp, severity level, logger name, and message.
+
+    Returns:
+        logging.Logger: The configured logger instance.
+    """
     project_dir = Path(__file__).parents[1]  
     log_dir = project_dir/"logs"
 

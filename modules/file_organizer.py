@@ -1,13 +1,13 @@
 """
 File Organizer module for the Comprehensive Automation Suite.
 
-This module provides functionality to scan a target directory, categorize
-files based on their extensions, detect duplicate file names, create an
-organization preview, and move files into their respective category folders.
+This module scans a target directory, categorizes files by extension,
+detects duplicate destination filenames, creates an organization preview,
+and moves files into their designated category folders after confirmation.
 
-It also provides CLI functions for displaying the organization preview and
-terminal report. Application events are recorded using the shared logging
-system provided by the general_logger module.
+It also provides CLI functions for displaying the preview and a summary
+of the detected files and folders. Application events are recorded
+through the shared logging system.
 """
 
 from config import tests_dir_path
@@ -20,10 +20,13 @@ logger = get_logger("file_organizer")
 # Validate the existence of the directory.
 def validate_dir(folder_dir):
     """
-        Validate whether the given path exists and refers to a directory.
+    Check whether the supplied path exists and refers to a directory.
 
-        Returns:
-            bool: True if the path exists and is a directory, otherwise False.
+    Args:
+        folder_dir: The path to validate.
+
+    Returns:
+        bool: True if the path exists and is a directory; otherwise, False.
     """
     if folder_dir.exists() and folder_dir.is_dir():
         return True
@@ -33,15 +36,15 @@ def validate_dir(folder_dir):
 # To Find the matching extension to categories the files. 
 def get_category(extension):
     """
-    Determine the category of a file based on its extension.
+    Determine a file category from its extension.
 
-    Known extensions are grouped into categories such as Image, Audio,
-    Video, Documents, PDF, Spreadsheets, and Archives. Extensions that
-    do not match a defined category are classified as Other.
+    Args:
+        extension: The file extension, including the leading period.
 
     Returns:
-        str: The category assigned to the given file extension.
-    """
+        str: The matching category: Image, Audio, Video, Documents,
+        PDF, Spreadsheets, Archives, or Other for unrecognized extensions.
+    """ 
 
     # File extensions grouped by their corresponding file categories.
     image_category = [".jpg",".jpeg",".png",".gif",]
@@ -78,13 +81,17 @@ def get_category(extension):
 
 def duplicate_handling(given_path):
     """
-    Generate a unique file path when a duplicate file already exists.
+    Generate an unused path for an existing file with a duplicate name.
 
-    Appends an incrementing number in parentheses to the original filename
-    until an unused path is found.
+    Appends an incrementing number in parentheses to the filename stem
+    until a path that does not exist is found.
+
+    Args:
+        given_path: The existing file path to rename.
 
     Returns:
-        Path: A unique path for the duplicate file.
+        Path: The first unused candidate path, or None if the supplied
+        path does not exist or is not a file.
     """
     if given_path.exists() and given_path.is_file():
         original_stem = given_path.stem
@@ -98,7 +105,20 @@ def duplicate_handling(given_path):
         return given_path
 
 class File_Organizer():
+    """
+    Manage the file organization workflow.
+
+    The class scans the selected directory, categorizes files, records
+    duplicate destination names, builds preview records, handles user
+    confirmation, moves files, and generates an organization report.
+    """
     def __init__(self):
+        """
+        Initialize the lists and counter used by the organizer.
+
+        The attributes store detected filenames, duplicate filenames,
+        folder names, preview records, and the current retry count.
+        """
    
         self.files_name = []
         self.duplicate_files_name = []
@@ -108,10 +128,10 @@ class File_Organizer():
 
     def scan_directory(self):
         """
-        Scan the target directory and separate its files and folders.
+        Scan the selected directory and separate files from subdirectories.
 
-        Stores the detected files and subdirectories in instance attributes for
-        use during the file categorization and preview process.
+        Stores the detected file paths in 'self.dir_files' and directory
+        paths in 'self.dir_folders' for use by the categorization workflow.
         """
         logger.info("Initializing file scanning.... ")
 
@@ -124,8 +144,14 @@ class File_Organizer():
         """
         Create and store a preview record for a file.
 
-        The preview record contains the file name, assigned category, and
-        destination path that will be used during organization.
+        Args:
+            file_name: The original filename.
+            file_category: The category assigned to the file.
+            file_destination: The planned destination path relative to the
+                selected directory.
+
+        Appends a dictionary containing the file name, category, and
+        destination to 'self.preview_records'.
         """
         preview = {
             "Name": file_name,
@@ -136,11 +162,14 @@ class File_Organizer():
         
     def categorization(self):
         """
-        Categorize detected files and construct their organization preview.
+        Categorize detected files and build their organization preview.
 
-        Determines each file's category from its extension, checks for duplicate
-        destination names, and stores the resulting organization details in the
-        preview records.
+        Determines each file's category from its extension, records detected
+        filenames and existing folder names, and checks whether the planned
+        destination already exists. If a duplicate destination is found,
+        generates an alternative filename and records it.
+
+        Stores each planned operation in 'self.preview_records'.
         """
         self.folders_name.extend([folder.name for folder in self.dir_folders])
         logger.info("Constructing preview records.")
@@ -166,14 +195,21 @@ class File_Organizer():
         
     def manage_file_organizer(self,folder_path):
         """
-        Start the file organizer workflow after validating the target directory.
+        Initialize and run the file organization preparation workflow.
 
-        Scans the directory, categorizes the detected files, and prepares the
-        information required by the CLI for displaying the organization preview.
+        Uses the default test directory when 'folder_path' is empty;
+        otherwise, uses the supplied path as the target directory.
+        Validates the target, scans its contents, categorizes files,
+        and prepares the summary data and preview records.
+
+        Args:
+            folder_path: The target directory path, or an empty string
+                to use the default test directory.
 
         Returns:
-            tuple: Necessary directory information and the generated preview
-            records when the target directory is valid.
+            tuple: A pair containing the summary dictionary and preview
+            records when the directory is valid. Returns None if validation
+            fails.
         """
         logger.info("File organizer was started.")
 
@@ -201,13 +237,16 @@ class File_Organizer():
 
     def retry_attempt(self):
         """
-        Manage repeated invalid confirmation attempts.
+        Track invalid confirmation attempts and periodically ask whether
+        the user wants to continue.
 
-        Allows the user to retry the confirmation process and asks whether to
-        continue after the maximum number of attempts is reached.
+        When the retry counter reaches three, prompts the user to continue
+        or stop, resets the counter, and returns the user's response if
+        they choose to stop.
 
         Returns:
-            str or None: The user's decision when the retry limit is reached.
+            str or None: Returns "no" if the user chooses to stop at the
+            prompt; otherwise, returns None.
         """
         if self.tried ==3:
             decide = (input("\nWant to continue? (yes/no): ")).lower().strip()
@@ -218,6 +257,18 @@ class File_Organizer():
         self.tried+=1
 
     def retry_responce(self):
+        """
+        Display a retry prompt and process the retry attempt.
+
+        Calls 'retry_attempt()' to check whether the user has exhausted
+        the allowed attempts. If the user chooses to stop, resets the
+        counter and returns a message indicating that the retry limit
+        has been reached.
+
+        Returns:
+            str or None: A retry-limit message if the user chooses to stop;
+            otherwise, None.
+        """
         print("\nPlease select between 1/yes or 2/no. \nOR \nWait for 3 tries, Try ",self.tried)
 
         attempt = self.retry_attempt()
@@ -228,6 +279,12 @@ class File_Organizer():
             return reply
 
     def reset_data(self):
+        """
+        Reset the organizer's stored data for a new operation.
+
+        Clears the filename, duplicate filename, folder name, and preview
+        lists, and resets the retry counter to its initial value.
+        """
         self.files_name = []
         self.duplicate_files_name = []
         self.folders_name = []
@@ -236,14 +293,21 @@ class File_Organizer():
 
     def move_confirmation(self,preview_records,decision):
         """
-        Confirm and perform the planned file organization.
+        Process the user's decision and perform the planned file organization.
 
-        Creates missing category folders, and moves
-        files to their planned destinations. Invalid choices are handled through
-        the retry mechanism.
+        If the decision is "1" or "yes", creates missing category folders
+        and moves files to their planned destinations. Otherwise, records
+        that the operation was stopped. Generates a JSON report and resets
+        the stored organizer data after either normal outcome.
+
+        Args:
+            preview_records: The list of planned file operations.
+            decision: The user's confirmation or cancellation response.
 
         Returns:
-            str: A message describing the result of the organization operation.
+            str or None: A completion or cancellation message when the
+            corresponding operation finishes. Returns None if a
+            FileNotFoundError is caught.
         """
         try:
             if decision == "1" or decision == "yes":
@@ -281,7 +345,13 @@ class File_Organizer():
 # CLI-only display functions called by the main program.
 def show_organizer_preview(preview_records):
     """
-    Display the file organization preview in the CLI.
+    Display the file organization preview in the command-line interface.
+
+    Args:
+        preview_records: A list of dictionaries containing each file's
+            name, category, and planned destination.
+
+    Displays the preview as rows in the terminal.
     """
     headers = preview_records[0].keys()
     [print(end=f"{header}                    ") for header in headers]
@@ -294,7 +364,15 @@ def show_organizer_preview(preview_records):
 
 def organizer_terminal_report(necessary_data):
     """
-    Display the file organizer results and summary in the CLI.
+    Display a summary of the file organizer's scan in the terminal.
+
+    Args:
+        necessary_data: A dictionary containing the target folder name,
+            detected filenames, existing folder names, and duplicate
+            destination filenames.
+
+    Displays the detected files, duplicate filenames, folders, and
+    whether new category folders are expected to be created.
     """
     category_folders = ["Image","Audio","Video","Documents","PDF","Spreadsheets","Archives","Other"]
     print(f"targeted Folder : {necessary_data["targeted_folder"]}\n")

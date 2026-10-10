@@ -1,10 +1,35 @@
+"""
+JSON report generation utilities for the File Organizer.
+
+This module collects file organization summary data and saves it
+to a dated JSON report. Existing reports for the same day are
+loaded and updated with additional operation records.
+"""
 from config import report_dir_path
 
 from datetime import datetime 
 import json
 
 def organizer_json_generator(necessary_data,preview_records,message):
+    """
+    Generate and save a JSON report for a file organization operation.
 
+    Creates the report directory if it does not exist, builds a summary
+    from the supplied scan data, and includes detected filenames,
+    duplicate filenames, and existing folder names when available.
+    Preview records are included when files were detected. If a report
+    for the current date already exists, appends the new record to it.
+
+    Args:
+        necessary_data: A dictionary containing the target folder name,
+            detected filenames, duplicate filenames, and folder names.
+        preview_records: The planned file organization records, each
+            containing a filename, category, and destination.
+        message: A message describing the operation's outcome.
+
+    Returns:
+        None
+    """
     if not report_dir_path.exists():
         report_dir_path.mkdir()
 

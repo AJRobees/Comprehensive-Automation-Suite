@@ -1,3 +1,11 @@
+"""
+Home interface for the Comprehensive Automation Suite.
+
+This module creates the main Tkinter window and navigation menu
+for accessing the suite's automation tools. It manages the menu's
+expanded and collapsed states and launches the File Organizer GUI
+when selected.
+"""
 import tkinter as tk
 import messagebox
 
@@ -5,7 +13,19 @@ from .gui_file_organizer import File_Organizer_GUI
 
 
 class Home_Interface():
+    """
+    Manage the home window and navigation for the automation suite.
+
+    Provides the main Tkinter window, a toggleable navigation menu,
+    and controls for launching the available automation interfaces.
+    """
     def __init__(self):
+        """
+        Initialize the home window and its main navigation controls.
+
+        Sets up the window dimensions, position, color scheme, title bar,
+        and navigation toggle button, then starts the Tkinter event loop.
+        """
 
         self.is_autoation_working = False
             
@@ -54,6 +74,13 @@ class Home_Interface():
 
 
     def toggle_menu(self):
+        """
+        Open and display the navigation menu.
+
+        Creates the side menu with buttons for the File Organizer and
+        Web Scraper, along with the additional menu label and back button.
+        Changes the toggle button so the menu can be collapsed.
+        """
         self.wn_width = self.root.winfo_width()
         self.wn_height = self.root.winfo_height()
 
@@ -82,11 +109,22 @@ class Home_Interface():
         self.back_btn.pack(padx=10,pady=10)
 
     def collapse_toggle_menu(self):
+        """
+        Close the navigation menu and restore the toggle button.
+
+        Destroys the menu frame and resets the toggle button to its
+        menu-opening state.
+        """
         self.toggle_menu_fm.destroy()
         self.toggle_btn.config(text="≡",command=self.toggle_menu)
 
     def home_page(self):
+        """
+        Display the home page content.
 
+        Collapses the navigation menu, creates a home content frame,
+        and adds a welcome heading.
+        """
         self.collapse_toggle_menu()
         home_frame = tk.Frame(self.root)
         home_frame.pack()
@@ -97,6 +135,18 @@ class Home_Interface():
         
 
     def launch_automation(self,automation_name):
+        """
+        Launch or stop an automation interface selected from the menu.
+
+        Args:
+            automation_name: The identifier of the selected automation,
+                such as "file_organizer" or "web_scraper".
+
+        Closes the navigation menu and checks whether an automation is
+        already marked as running. Launches the File Organizer GUI when
+        selected, displays an informational message for the Web Scraper,
+        or prompts the user when an automation is already marked as running.
+        """
 
         self.collapse_toggle_menu()
 
@@ -124,4 +174,3 @@ class Home_Interface():
                 self.mod.destroy()
                 messagebox.showinfo("info",f"{automation_name} has been stopped.")
                 self.is_autoation_working = False
-

@@ -1,3 +1,11 @@
+"""
+Web scraping module for retrieving and extracting HTML content.
+
+This module requests web pages, parses their HTML using BeautifulSoup,
+extracts text from specified HTML elements, and saves extracted results
+as JSON reports. It also logs relevant scraping events and errors.
+"""
+
 from bs4 import BeautifulSoup
 from datetime import datetime
 import requests
@@ -9,7 +17,20 @@ from configs import get_logger
 logger = get_logger("web_scraper")
 
 class Web_Scraper():
+    """
+    Retrieve web pages and extract text from selected HTML elements.
+
+    The class manages the request process, HTML parsing, and extraction
+    of text content from elements specified by the caller.
+    """
+
     def __init__(self):
+        """
+        Initialize the scraper's state and request headers.
+
+        Set up attributes for the target URL, requested HTML element,
+        extracted results, and randomized user-agent header.
+        """
 
         self.given_url = ""
         self.required_element = ""
@@ -18,6 +39,18 @@ class Web_Scraper():
         self.header = random_header
 
     def scraper_collector(self,url):
+        """
+        Request a web page and handle connection-related failures.
+
+        Args:
+        url: The URL of the web page to retrieve.
+
+        Returns:
+        A tuple containing a success flag and a status message.
+
+        Logs connection and timeout errors when they occur.
+        """
+
         try:
             self.given_url = url 
             actual_response = requests.get(self.given_url,timeout=(3,10),allow_redirects=True,headers=self.header)
@@ -36,6 +69,13 @@ class Web_Scraper():
             return False,result
 
     def soup_maker(self):
+        """
+        Parse the retrieved HTML response using BeautifulSoup.
+
+        If the response is successful, create a parsed HTML document
+        and log the result. Otherwise, log a warning about the failed request.
+        """
+
         if self.response.ok:
             logger.info(f"Web page retrieved successfully. Code {self.status}")
 
@@ -46,6 +86,19 @@ class Web_Scraper():
                 logger.warning(f"Failed to fetch from the website. Error code {self.status}")
 
     def search_element(self,element):
+        """
+        Extract non-empty text from matching HTML elements.
+
+        Args:
+        element: The HTML tag name to search for, such as "p" or "h1".
+
+        Returns:
+        A list of extracted text strings if matching elements contain
+        non-empty text; otherwise, returns None.
+
+        Updates the selected element and logs the extraction result.
+        """
+
         self.element_list = []
         result_element = self.doc.find_all(element)
 
@@ -63,6 +116,17 @@ class Web_Scraper():
 
         
     def run_scraper(self,url):
+        """
+        Retrieve a web page and prepare its HTML for parsing.
+
+        Args:
+        url: The URL of the web page to retrieve.
+
+        Returns:
+        A tuple containing a success flag and a status message.
+        Returns a failure flag and error message if retrieval fails.
+        """
+
         valid,result = self.scraper_collector(url)
         if valid:
             self.soup_maker()
@@ -71,6 +135,18 @@ class Web_Scraper():
             return False,result
 
 def save_as_json(url,search,result):
+    """
+    Save extracted web-scraping results to a dated JSON report.
+
+    Args:
+    url: The URL from which the data was extracted.
+    search: The HTML element or search criterion used.
+    result: The extracted result or collection of results.
+
+    Creates the reports directory if needed and appends the new
+    record to the current day's report when a report already exists.
+    Logs successful saves.
+    """
 
     if not report_dir_path.exists():
         report_dir_path.mkdir()
